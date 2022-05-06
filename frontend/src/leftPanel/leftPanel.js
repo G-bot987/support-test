@@ -58,10 +58,11 @@ export default function LeftPanel(props) {
           <div className="navHeader">Lists</div>
         </Link>
 
-        <Link to="profile" className="nav profile">
+        {/* Profiles have not been fully implemented yet */}
+        {/* <Link to="profile" className="nav profile">
           <img className="icon" src={profileIcon} />
           <div className="navHeader">Profile</div>
-        </Link>
+        </Link> */}
 
         <Link to="/" className="nav more">
           <img className="icon" src={moreIcon} />
