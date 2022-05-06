@@ -1,0 +1,107 @@
+.logInContainer {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  display: none;
+}
+
+.logInRel {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.logInAbs {
+  display: inline-grid;
+  max-width: 300px;
+  max-height: 300px;
+  position: absolute;
+  margin: 100px auto;
+  left: 0;
+  right: 0;
+  background: rgba(217, 217, 217, 1);
+  padding: 10px 50px 50px 50px;
+  border-radius: 16px;
+  grid-template-areas:
+    "birdy"
+    "logInHeader"
+    "Username"
+    "Password"
+    "Button"
+    "Status";
+  grid-gap: 20px;
+  justify-items: center;
+}
+
+.birdyBlue {
+  grid-area: birdy;
+}
+
+.logInHeader {
+  grid-area: logInHeader;
+  font-size: 40px;
+  color: black;
+}
+
+.username {
+  grid-area: Username;
+  height: 40px;
+  font-size: 20px;
+  width: 100%;
+}
+
+.password {
+  grid-area: Password;
+  height: 40px;
+  font-size: 20px;
+  width: 100%;
+}
+
+.logInButtonContainer {
+  grid-area: Button;
+  justify-content: center;
+  justify-self: center;
+  width: 100%;
+}
+
+.logInButton {
+  /*width: 300px;*/
+  width: 100%;
+  height: 50px;
+  color: white;
+  background: black;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 1000px;
+  border: none;
+}
+
+.logInMessage {
+  justify-self: center;
+  grid-area: Status;
+  color: red;
+}
+
+.guestButtonContainer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  justify-content: center;
+  justify-self: center;
+  justify-items: center;
+  margin: 110px auto;
+  width: 380px;
+  z-index: 3;
+}
+
+.guestButton {
+  width: 30px;
+  height: 30px;
+  color: black;
+  background: transparent;
+  cursor: pointer;
+  font-size: 20px;
+  border: none;
+}
