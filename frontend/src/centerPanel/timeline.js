@@ -63,12 +63,17 @@ export default function Timeline(props) {
   };
 
   useEffect(() => {
-    getTweets();
     if (props.update) {
       props.setUpdate(false);
       getTweets();
     }
   }, [props.update]);
+
+  useEffect(() => {
+    if (!props.logInBackground) {
+      getTweets();
+    }
+  }, [props.logInBackground]);
 
   // need to change this if starting idx is not 0, then we append our results onto the current one
 
