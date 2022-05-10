@@ -63,6 +63,7 @@ export default function Timeline(props) {
   };
 
   useEffect(() => {
+    getTweets();
     if (props.update) {
       props.setUpdate(false);
       getTweets();
@@ -70,6 +71,7 @@ export default function Timeline(props) {
   }, [props.update]);
 
   // need to change this if starting idx is not 0, then we append our results onto the current one
+
   const getTweets = async () => {
     const res = await fetch(
       `http://localhost:3000/tweets/${props.startingIdx}`,
