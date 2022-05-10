@@ -1,6 +1,5 @@
 # Twitter Clone Debug Project
 
-a test commit 
 
 This is a demo clone of Twitter built as a learning exercise by one of our junior developers. Some features appear in the UI but are not functional. Functionality currently implemented:
 - Log in
