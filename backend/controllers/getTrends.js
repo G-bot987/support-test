@@ -1,17 +1,16 @@
-
-const { getIsTrending } = require('../services/getIsTrending');
+const { getIsTrending } = require("../services/getIsTrending");
 
 const getTrends = async (knex, req, res) => {
   console.log("In get request- for fetching trends when logging on.");
 
   try {
-    const [selectTrends, isTrending] = await Promise.all([
-      knex("trends")
-        .select("*")
-        .limit(5)
-        .orderBy("population", "desc"),
-      getIsTrending(5)
-    ]);
+    // var used to allow scoping in catch block
+    var selectTrends = await knex("trends")
+      .select("*")
+      .limit(5)
+      .orderBy("population", "desc");
+
+    const isTrending = await getIsTrending(5);
 
     const trends = selectTrends.map((t, i) => ({
       ...t,
@@ -20,8 +19,12 @@ const getTrends = async (knex, req, res) => {
 
     res.send(trends);
   } catch (e) {
-    console.log(e);
-    res.sendStatus(500);
+    if (selectTrends) {
+      res.send(selectTrends);
+    } else {
+      res.sendStatus(500);
+    }
+    console.log("error", e);
   }
 };
 
