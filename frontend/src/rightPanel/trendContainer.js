@@ -14,7 +14,7 @@ const makeTrend = (trendInfo, idx) => {
 
 export default function TrendContainer(props) {
   const [trends, setTrends] = useState("");
-  console.log("i am props " + JSON.stringify(props));
+
   useEffect(() => {
     if (props.update) {
       getTrends();
