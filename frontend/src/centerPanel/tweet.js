@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./centerPanel.css";
-
+import moment from "moment";
+import "moment-timezone";
 import comment from "../imgs/comment.svg";
 import heart from "../imgs/heart.svg";
 import retweet from "../imgs/retweet.svg";
@@ -13,30 +14,15 @@ export default function Tweet(props) {
   const tweetTimeLocal = new Date(props.tweetTime);
 
   const getTimeSince = (tweetTime) => {
-    const then = Date.parse(tweetTime);
-    const now = Date.now();
-    const timeSince = now - then;
+    // get usertimezone based on timezone of terminal
+    const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    //  using moment-tz seperate import from moment to convert tweet time to user timzone
+    const tweetInUserTZ = moment(tweetTime).tz(userTimeZone);
+    // using fromNow method on tweetInUserTZ._d destructoring to display time from tweet locally.
+    // tested by changing timezone on my terminal
+    const timeSince = moment(tweetInUserTZ._d).fromNow();
 
-    // Think about this properly later
-    if (timeSince < 1000 * 60) {
-      return "" + Math.floor(timeSince / 1000) + "s";
-    } else if (timeSince < 1000 * 60 * 60) {
-      return "" + Math.floor(timeSince / (1000 * 60)) + "min";
-    } else if (timeSince < 1000 * 60 * 60 * 24) {
-      return "" + Math.floor(timeSince / (1000 * 60 * 60)) + "hr";
-    } else if (timeSince < 1000 * 60 * 60 * 24 * 7) {
-      return "" + Math.floor(timeSince / (1000 * 60 * 60 * 24)) + "d";
-    } else if (timeSince < 1000 * 60 * 60 * 24 * 7 * 28) {
-      return "" + Math.floor(timeSince / (1000 * 60 * 60 * 24 * 7)) + "wk";
-    } else if (timeSince < 1000 * 60 * 60 * 24 * 7 * 28 * 12) {
-      return (
-        "" + Math.floor(timeSince / (1000 * 60 * 60 * 24 * 7 * 28)) + "mth"
-      );
-    } else {
-      return (
-        "" + Math.floor(timeSince / (1000 * 60 * 60 * 24 * 7 * 28 * 12)) + "yr"
-      );
-    }
+    return timeSince;
   };
 
   return (
